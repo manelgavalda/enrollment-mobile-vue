@@ -4,10 +4,11 @@ import routes from './routes'
 
 const router = new VueRouter({
     // history mode html5 per borrar #
-  mode: 'hash',
-  routes,
-  linkActiveClass: 'open active',
-  scrollBehavior: () => ({ y: 0 })
+  // mode: 'hash',
+  mode: 'history',
+  routes
+  // linkActiveClass: 'open active',
+  // scrollBehavior: () => ({ y: 0 })
 })
 
 // router.beforeEach((to, from, next) => {
