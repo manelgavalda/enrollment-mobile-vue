@@ -14,13 +14,25 @@
           <h3 class="md-title">Content</h3>
         </div>
       </md-toolbar>
-    </md-sidenav>
+      <md-list>
+        <md-list-item @click="toggleLeftSidenav">
+          <md-icon>move_to_inbox</md-icon>
+          <router-link exact to="/login">Login</router-link>
+        </md-list-item>
 
+        <md-list-item @click="toggleLeftSidenav">
+          <md-icon>send</md-icon>
+          <router-link exact  to="/home" >Home</router-link>
+        </md-list-item>
+      </md-list>
+    </md-sidenav>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 export default {
+  name: 'app',
   methods: {
     toggleLeftSidenav () {
       this.$refs.leftSidenav.toggle()

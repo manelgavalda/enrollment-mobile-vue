@@ -1,29 +1,44 @@
 <template>
   <div class="login">
-    <form novalidate @submit.stop.prevent="submit">
-      <md-input-container>
-        <label>User</label>
-        <md-input type="text"></md-input>
-      </md-input-container>
+    <md-card>
+      <md-card-media>
+        <img src="../assets/enrollmentmobile_logo.png" alt="People">
+      </md-card-media>
 
-      <md-input-container md-has-password>
-        <label>Password</label>
-        <md-input type="password"></md-input>
-      </md-input-container>
-      <md-button class="md-raised md-primary">Login</md-button>
-      <md-button class="md-raised md-accent">Register</md-button>
-    </form>
+      <md-card-header>
+        <div class="md-title">Enrollment Mobile Login</div>
+        <div class="md-subhead">Login for Enrollment Mobile Application</div>
+      </md-card-header>
+      <md-card-content>
+        <form novalidate @submit.stop.prevent="submit">
+          <md-input-container>
+            <label>User</label>
+            <md-input type="text"></md-input>
+          </md-input-container>
+
+          <md-input-container md-has-password>
+            <label>Password</label>
+            <md-input type="password"></md-input>
+          </md-input-container>
+
+        </form>
+      </md-card-content>
+      <md-card-actions>
+        <md-button class="md-raised md-primary">Login</md-button>
+        <md-button class="md-raised md-accent">Register</md-button>
+      </md-card-actions>
+    </md-card>
   </div>
 </template>
 
 <script>
-  export default {
+  new Vue({
     name: 'home',
     data () {
       return {
       }
     }
-  }
+  })
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
