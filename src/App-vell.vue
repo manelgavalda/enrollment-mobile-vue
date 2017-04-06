@@ -27,23 +27,23 @@
 </template>
 
 <script>
-  export default {
-    name: 'Full',
-    methods: {
-      toggleLeftSidenav () {
-        this.$refs.leftSidenav.toggle()
-      },
-      closeRightSidenav () {
-        this.$refs.rightSidenav.close()
-      },
-      open (ref) {
-        console.log('Opened: ' + ref)
-      },
-      close (ref) {
-        console.log('Closed: ' + ref)
-      }
+export default {
+  name: 'app',
+  methods: {
+    toggleLeftSidenav () {
+      this.$refs.leftSidenav.toggle()
+    },
+    closeRightSidenav () {
+      this.$refs.rightSidenav.close()
+    },
+    open (ref) {
+      console.log('Opened: ' + ref)
+    },
+    close (ref) {
+      console.log('Closed: ' + ref)
     }
   }
+}
 </script>
 <style>
 </style>

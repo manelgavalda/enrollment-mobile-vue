@@ -11,6 +11,9 @@ export default {
     return {
       msg: 'Welcome to Enrollment Mobile'
     }
+  },
+  created () {
+    console.log('home')
   }
 }
 </script>

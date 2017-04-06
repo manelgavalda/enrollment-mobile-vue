@@ -1,9 +1,9 @@
 <template>
-  <div class="login">
+  <div class="app">
     <md-card>
-      <md-card-media>
-        <img src="/../assets/enrollmentmobile_logo.png" alt="People">
-      </md-card-media>
+      <!--<md-card-media>-->
+        <!--<img src="/../images/enrollmentmobile_logo.png" alt="Logo">-->
+      <!--</md-card-media>-->
 
       <md-card-header>
         <div class="md-title">Enrollment Mobile Login</div>
@@ -32,17 +32,18 @@
 </template>
 
 <script>
-  import Vue from 'vue'
-  new Vue({ // eslint-disable-line no-new
-    template: '<Login/>'
-  })
+export default {
+  created () {
+    console.log('Login')
+  }
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .parent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  /*.parent {*/
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*align-items: center;*/
+  /*}*/
 </style>
