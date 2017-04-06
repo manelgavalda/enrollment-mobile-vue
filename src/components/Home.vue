@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="app">
     Home
   </div>
 </template>
@@ -14,6 +14,12 @@ export default {
   },
   created () {
     console.log('home')
+    this.prova()
+  },
+  methods: {
+    prova () {
+      console.log('prova')
+    }
   }
 }
 </script>

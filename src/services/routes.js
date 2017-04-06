@@ -7,8 +7,8 @@ const routes = [
   {
     // path: '/login',
     // redirect: '/login',
-    path: '/',
-    redirect: '/home',
+    path: '/home',
+    // redirect: '/home',
     component: Full,
     children: [
           // Afegides per mi.

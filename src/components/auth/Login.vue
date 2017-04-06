@@ -24,8 +24,8 @@
         </form>
       </md-card-content>
       <md-card-actions>
-        <md-button class="md-raised md-primary">Login</md-button>
-        <md-button class="md-raised md-accent">Register</md-button>
+        <md-button @click.native="login" class="md-raised md-primary">Login</md-button>
+        <!--<md-button class="md-raised md-accent">Register</md-button>-->
       </md-card-actions>
     </md-card>
   </div>
@@ -33,17 +33,19 @@
 
 <script>
 export default {
+  data () {
+    return {
+      authorized: false
+    }
+  },
   created () {
     console.log('Login')
+  },
+  methods: {
+    login () {
+      this.$router.push({path: 'home'})
+    }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-  /*.parent {*/
-    /*display: flex;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/
-  /*}*/
-</style>

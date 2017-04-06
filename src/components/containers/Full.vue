@@ -1,5 +1,5 @@
 <template>
-  <div class="phone-viewport">
+  <div class="app">
     <md-toolbar>
       <md-button class="md-icon-button" @click.native="toggleLeftSidenav">
         <md-icon>menu</md-icon>
@@ -16,10 +16,16 @@
       </md-toolbar>
       <md-list>
 
-        <md-list-item @click="toggleLeftSidenav">
-          <router-link exact  to="/home">Home
-            <md-icon>send</md-icon> </router-link>
+        <md-list-item @click.native="toggleLeftSidenav">
+          <router-link exact  to="/home">
+            <md-icon>send</md-icon> Home</router-link>
         </md-list-item>
+
+        <md-list-item @click.native="toggleLeftSidenav">
+          <router-link exact  to="/login">
+            <md-icon>exit_to_app</md-icon> Logout</router-link>
+        </md-list-item>
+
       </md-list>
     </md-sidenav>
     <router-view></router-view>
@@ -28,7 +34,7 @@
 
 <script>
   export default {
-    name: 'Full',
+    name: 'app',
     methods: {
       toggleLeftSidenav () {
         this.$refs.leftSidenav.toggle()
