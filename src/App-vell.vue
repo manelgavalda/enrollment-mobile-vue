@@ -23,6 +23,7 @@
       </md-list>
     </md-sidenav>
     <router-view></router-view>
+
   </div>
 </template>
 

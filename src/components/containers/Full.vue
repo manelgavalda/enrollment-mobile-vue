@@ -16,14 +16,19 @@
       </md-toolbar>
       <md-list>
 
-        <md-list-item @click.native="toggleLeftSidenav">
-          <router-link exact  to="/home">
-            <md-icon>send</md-icon> Home</router-link>
+        <md-list-item>
+          <router-link @click.native="toggleLeftSidenav" exact  to="/home">
+            <md-icon>send</md-icon> Home </router-link>
         </md-list-item>
 
-        <md-list-item @click.native="toggleLeftSidenav">
-          <router-link exact  to="/login">
-            <md-icon>exit_to_app</md-icon> Logout</router-link>
+        <md-list-item>
+          <router-link @click.native="toggleLeftSidenav" exact  to="/profile">
+            <md-icon>person_outline</md-icon> Profile </router-link>
+        </md-list-item>
+
+        <md-list-item @click="toggleLeftSidenav">
+          <router-link  @click.native="toggleLeftSidenav" exact  to="/login">
+            <md-icon>exit_to_app</md-icon> Logout </router-link>
         </md-list-item>
 
       </md-list>
