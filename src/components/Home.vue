@@ -11,9 +11,6 @@
 
               <v-row row>
 
-                <v-col xs2>
-                  <v-subheader>DNI:</v-subheader>
-                </v-col>
 
                 <v-col xs4>
                   <v-text-field
@@ -22,23 +19,12 @@
                   ></v-text-field>
                 </v-col>
 
-                <v-col xs2>
-                  <v-subheader>TSI:</v-subheader>
-                </v-col>
 
                 <v-col xs4>
                   <v-text-field
                     name="input-1"
                     label="TSI"
                   ></v-text-field>
-                </v-col>
-
-              </v-row>
-
-              <v-row row>
-
-                <v-col xs2>
-                  <v-subheader>Birth Date:</v-subheader>
                 </v-col>
 
                 <v-col xs4>
@@ -48,8 +34,15 @@
                   ></v-text-field>
                 </v-col>
 
-                <v-col xs2>
-                  <v-subheader>Sex:</v-subheader>
+              </v-row>
+
+              <v-row row>
+
+                <v-col xs4>
+                  <v-text-field
+                    name="input-1"
+                    label="Birth Date"
+                  ></v-text-field>
                 </v-col>
 
                 <v-col xs4>
@@ -59,14 +52,6 @@
                   ></v-text-field>
                 </v-col>
 
-              </v-row>
-
-              <v-row row>
-
-                <v-col xs2>
-                  <v-subheader>Name:</v-subheader>
-                </v-col>
-
                 <v-col xs4>
                   <v-text-field
                     name="input-1"
@@ -74,9 +59,9 @@
                   ></v-text-field>
                 </v-col>
 
-                <v-col xs2>
-                  <v-subheader>First Surname:</v-subheader>
-                </v-col>
+              </v-row>
+
+              <v-row row>
 
                 <v-col xs4>
                   <v-text-field
@@ -85,23 +70,11 @@
                   ></v-text-field>
                 </v-col>
 
-              </v-row>
-
-              <v-row row>
-
-                <v-col xs2>
-                  <v-subheader>Second Surname:</v-subheader>
-                </v-col>
-
                 <v-col xs4>
                   <v-text-field
                     name="input-1"
                     label="Second Surname"
                   ></v-text-field>
-                </v-col>
-
-                <v-col xs2>
-                  <v-subheader>Username:</v-subheader>
                 </v-col>
 
                 <v-col xs4>
@@ -115,19 +88,11 @@
 
               <v-row row>
 
-                <v-col xs2>
-                  <v-subheader>Telephone:</v-subheader>
-                </v-col>
-
                 <v-col xs4>
                   <v-text-field
                     name="input-1"
                     label="Telephone"
                   ></v-text-field>
-                </v-col>
-
-                <v-col xs2>
-                  <v-subheader>Mobile Phone:</v-subheader>
                 </v-col>
 
                 <v-col xs4>
@@ -137,24 +102,15 @@
                   ></v-text-field>
                 </v-col>
 
-              </v-row>
-
-              <v-row row>
-
-                <v-col xs2>
-                  <v-subheader>Email:</v-subheader>
-                </v-col>
-
                 <v-col xs4>
                   <v-text-field
                     name="input-1"
                     label="Email"
                   ></v-text-field>
                 </v-col>
+              </v-row>
 
-                <v-col xs2>
-                  <v-subheader>Personal Email:</v-subheader>
-                </v-col>
+              <v-row row>
 
                 <v-col xs4>
                   <v-text-field

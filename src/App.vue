@@ -4,7 +4,26 @@
 
 <script>
   export default {
-    name: 'app'
+    name: 'app',
+    created () {
+      console.log(window.location.href)
+      document.addEventListener('deviceready', this.onDeviceReady, false)
+    },
+    methods: {
+      toggleLeftSidenav () {
+        this.$refs.leftSidenav.toggle()
+      },
+      open (ref) {
+        console.log('Opened: ' + ref)
+      },
+      close (ref) {
+        console.log('Closed: ' + ref)
+      },
+      onDeviceReady  () {
+        console.log('Working on platform ' + window.device.platform)
+//      notifications.enable()
+      }
+    }
   }
 </script>
 <!--

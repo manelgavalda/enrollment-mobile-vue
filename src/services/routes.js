@@ -22,6 +22,22 @@ const routes = [
     ]
   },
   {
+    path: '/android_asset/www/index.html',
+    component: Full,
+    children: [
+      {
+        path: 'home',
+        name: 'Home',
+        component: Home
+      },
+      {
+        path: 'profile',
+        name: 'Profile',
+        component: Profile
+      }
+    ]
+  },
+  {
     path: '/login',
     component: Login,
     children: [
