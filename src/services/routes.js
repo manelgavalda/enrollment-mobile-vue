@@ -1,18 +1,50 @@
 // Afegides
 import Home from '../components/Home.vue'
+import Profile from '../components/Profile.vue'
 import Login from '../components/auth/Login.vue'
-
+// import App from '../App.vue'
+import Full from '../components/containers/Full.vue'
 const routes = [
   {
     path: '/',
-    redirect: '/Login',
-    component: Login,
+    component: Full,
     children: [
-          // Afegides per mi.
       {
         path: 'home',
         name: 'Home',
         component: Home
+      },
+      {
+        path: 'profile',
+        name: 'Profile',
+        component: Profile
+      }
+    ]
+  },
+  {
+    path: '/android_asset/www/index.html',
+    component: Full,
+    children: [
+      {
+        path: 'home',
+        name: 'Home',
+        component: Home
+      },
+      {
+        path: 'profile',
+        name: 'Profile',
+        component: Profile
+      }
+    ]
+  },
+  {
+    path: '/login',
+    component: Login,
+    children: [
+      {
+        path: 'login',
+        name: 'Login',
+        component: Login
       }
     ]
   }

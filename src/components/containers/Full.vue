@@ -1,51 +1,74 @@
 <template>
-  <div class="login">
-    <md-card>
-      <md-card-media>
-        <img src="../assets/enrollmentmobile_logo.png" alt="People">
-      </md-card-media>
+  <div class="app">
+    <md-toolbar>
+      <md-button class="md-icon-button" @click.native="toggleLeftSidenav">
+        <md-icon>menu</md-icon>
+      </md-button>
 
-      <md-card-header>
-        <div class="md-title">Enrollment Mobile Login</div>
-        <div class="md-subhead">Login for Enrollment Mobile Application</div>
-      </md-card-header>
-      <md-card-content>
-        <form novalidate @submit.stop.prevent="submit">
-          <md-input-container>
-            <label>User</label>
-            <md-input type="text"></md-input>
-          </md-input-container>
+      <h2 class="md-title">Enrollment Mobile</h2>
+    </md-toolbar>
 
-          <md-input-container md-has-password>
-            <label>Password</label>
-            <md-input type="password"></md-input>
-          </md-input-container>
+    <md-sidenav class="md-left" ref="leftSidenav" @open="open('Left')" @close="close('Left')">
+      <md-toolbar class="md-large">
+        <div class="md-toolbar-container">
+          <h3 class="md-title">Content</h3>
+        </div>
+      </md-toolbar>
+      <md-list>
 
-        </form>
-      </md-card-content>
-      <md-card-actions>
-        <md-button class="md-raised md-primary">Login</md-button>
-        <md-button class="md-raised md-accent">Register</md-button>
-      </md-card-actions>
-    </md-card>
+        <md-list-item>
+          <router-link @click.native="toggleLeftSidenav" exact  to="/home">
+            <md-icon>send</md-icon> Home </router-link>
+        </md-list-item>
+
+        <md-list-item>
+          <router-link @click.native="toggleLeftSidenav" exact  to="/profile">
+            <md-icon>person_outline</md-icon> Profile </router-link>
+        </md-list-item>
+
+        <md-list-item @click="toggleLeftSidenav">
+          <router-link  @click.native="toggleLeftSidenav" exact  to="/login">
+            <md-icon>exit_to_app</md-icon> Logout </router-link>
+        </md-list-item>
+
+      </md-list>
+    </md-sidenav>
+    <transition name="fade">
+      <router-view></router-view>
+    </transition>
+    <v-footer>
+      <div class="text-xs-right">Copyright @ 2016 by Manel Gavaldà Andreu</div>
+    </v-footer>
   </div>
 </template>
 
 <script>
-  new Vue({
-    name: 'home',
-    data () {
-      return {
+  export default {
+    name: 'app',
+    methods: {
+      toggleLeftSidenav () {
+        this.$refs.leftSidenav.toggle()
+      },
+      closeRightSidenav () {
+        this.$refs.rightSidenav.close()
+      },
+      open (ref) {
+        console.log('Opened: ' + ref)
+      },
+      close (ref) {
+        console.log('Closed: ' + ref)
       }
     }
-  })
-</script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-  .parent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
+</script>
+<style>
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .3s
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+    opacity: 0
+  }
+
+
+
 </style>

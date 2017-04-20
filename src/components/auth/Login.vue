@@ -1,9 +1,9 @@
 <template>
-  <div class="login">
+  <div class="app">
     <md-card>
-      <md-card-media>
-        <img src="/../assets/enrollmentmobile_logo.png" alt="People">
-      </md-card-media>
+      <!--<md-card-media>-->
+        <!--<img src="/../images/enrollmentmobile_logo.png" alt="Logo">-->
+      <!--</md-card-media>-->
 
       <md-card-header>
         <div class="md-title">Enrollment Mobile Login</div>
@@ -24,25 +24,28 @@
         </form>
       </md-card-content>
       <md-card-actions>
-        <md-button class="md-raised md-primary">Login</md-button>
-        <md-button class="md-raised md-accent">Register</md-button>
+        <md-button @click.native="login" class="md-raised md-primary">Login</md-button>
+        <!--<md-button class="md-raised md-accent">Register</md-button>-->
       </md-card-actions>
     </md-card>
   </div>
 </template>
 
 <script>
-  import Vue from 'vue'
-  new Vue({ // eslint-disable-line no-new
-    template: '<Login/>'
-  })
+export default {
+  data () {
+    return {
+      authorized: false
+    }
+  },
+  created () {
+    console.log('Login')
+  },
+  methods: {
+    login () {
+      this.$router.push({path: 'home'})
+    }
+  }
+}
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-  .parent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-</style>
