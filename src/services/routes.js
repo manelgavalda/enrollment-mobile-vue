@@ -7,6 +7,7 @@ import Full from '../components/containers/Full.vue'
 const routes = [
   {
     path: '/',
+    redirect: '/home',
     component: Full,
     children: [
       {
@@ -23,19 +24,7 @@ const routes = [
   },
   {
     path: '/android_asset/www/index.html',
-    component: Full,
-    children: [
-      {
-        path: 'home',
-        name: 'Home',
-        component: Home
-      },
-      {
-        path: 'profile',
-        name: 'Profile',
-        component: Profile
-      }
-    ]
+    redirect: '/'
   },
   {
     path: '/login',

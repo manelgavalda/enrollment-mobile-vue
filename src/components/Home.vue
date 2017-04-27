@@ -2,7 +2,7 @@
   <div class="app">
     <v-stepper v-model="e6" vertical>
 
-      <v-stepper-step step="1" v-bind:complete="e6 > 1"> Seleccionar usuari <small></small> </v-stepper-step>
+      <v-stepper-step step="1" v-bind:complete="e6 > 1"> Select User <small></small> </v-stepper-step>
       <v-stepper-content step="1">
 
         <v-card class="grey lighten-4 elevation-0">
@@ -155,35 +155,35 @@
         <v-btn flat>Cancel</v-btn>
       </v-stepper-content>
 
-      <v-stepper-step step="2" v-bind:complete="e6 > 2"> Matricules </v-stepper-step>
+      <v-stepper-step step="2" v-bind:complete="e6 > 2"> Enrollments </v-stepper-step>
       <v-stepper-content step="2">
         <v-card class="grey lighten-1 z-depth-1 mb-5" height="200px" />
         <v-btn primary @click.native="e6 = 3">Continue</v-btn>
         <v-btn flat>Cancel</v-btn>
       </v-stepper-content>
 
-      <v-stepper-step step="3">Informació de matrícula període 2016-17</v-stepper-step>
+      <v-stepper-step step="3">Enrollment information 2016-17 period</v-stepper-step>
       <v-stepper-content step="3">
         <v-card class="grey lighten-1 z-depth-1 mb-5" height="200px" />
         <v-btn primary @click.native="e6 = 4">Continue</v-btn>
         <v-btn flat>Cancel</v-btn>
       </v-stepper-content>
 
-      <v-stepper-step step="4">Mòduls professionals</v-stepper-step>
+      <v-stepper-step step="4">Professional Modules</v-stepper-step>
       <v-stepper-content step="4">
         <v-card class="grey lighten-1 z-depth-1 mb-5" height="200px" />
         <v-btn primary @click.native="e6 = 5">Continue</v-btn>
         <v-btn flat>Cancel</v-btn>
       </v-stepper-content>
 
-      <v-stepper-step step="5">Unitats formatives</v-stepper-step>
+      <v-stepper-step step="5">Formative Units</v-stepper-step>
       <v-stepper-content step="5">
         <v-card class="grey lighten-1 z-depth-1 mb-5" height="200px" />
         <v-btn primary @click.native="e6 = 1">Continue</v-btn>
         <v-btn flat>Cancel</v-btn>
       </v-stepper-content>
-
     </v-stepper>
+
   </div>
 </template>
 
