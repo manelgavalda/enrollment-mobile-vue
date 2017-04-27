@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <v-app id="app">
     <md-card>
       <!--<md-card-media>-->
         <!--<img src="/../images/enrollmentmobile_logo.png" alt="Logo">-->
@@ -28,7 +28,7 @@
         <!--<md-button class="md-raised md-accent">Register</md-button>-->
       </md-card-actions>
     </md-card>
-  </div>
+  </v-app>
 </template>
 
 <script>
