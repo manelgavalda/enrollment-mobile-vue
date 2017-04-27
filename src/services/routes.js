@@ -1,9 +1,9 @@
 // Afegides
-import Home from '../components/Home.vue'
-import Profile from '../components/Profile.vue'
-import Login from '../components/auth/Login.vue'
-// import App from '../App.vue'
-import Full from '../components/containers/Full.vue'
+import Home from '../components/Home'
+import Profile from '../components/Profile'
+import PersonalStudentData from '../components/PersonalStudentData'
+import Login from '../components/auth/Login'
+import Full from '../components/containers/Full'
 const routes = [
   {
     path: '/',
@@ -19,6 +19,11 @@ const routes = [
         path: 'profile',
         name: 'Profile',
         component: Profile
+      },
+      {
+        path: 'personalStudentData',
+        name: 'PersonalStudentData',
+        component: PersonalStudentData
       }
     ]
   },

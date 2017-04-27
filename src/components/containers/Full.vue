@@ -27,6 +27,11 @@
         </md-list-item>
 
         <md-list-item>
+          <router-link @click.native="toggleLeftSidenav" exact  to="/personalStudentData">
+            <md-icon>face</md-icon> Personal Student Data </router-link>
+        </md-list-item>
+
+        <md-list-item>
           <router-link exact  to="/login">
             <md-icon>exit_to_app</md-icon> Logout </router-link>
         </md-list-item>
