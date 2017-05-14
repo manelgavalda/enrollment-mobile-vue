@@ -41,9 +41,9 @@
               ></v-text-field>
             </v-edit-dialog>
           </td>
-          <td class="text-xs-right">{{ props.item.study }}</td>
-          <td class="text-xs-right">{{ props.item.course }}</td>
-          <td class="text-xs-right">{{ props.item.classroom }}</td>
+          <td class="text-xs-right">{{ props.item.study_id }}</td>
+          <td class="text-xs-right">{{ props.item.course_id }}</td>
+          <td class="text-xs-right">{{ props.item.classroom_id }}</td>
           <td>
             <v-edit-dialog
               class="text-xs-right"
@@ -98,29 +98,7 @@ export default {
         }
 
       ],
-      items: [
-        {
-          value: false,
-          name: 'Enrollment 1',
-          study: 'DAM',
-          course: '2016/2017',
-          classroom: '23.1'
-        },
-        {
-          value: false,
-          name: 'Enrollment 2',
-          study: 'DAM',
-          course: '2016/2017',
-          classroom: '23.1'
-        },
-        {
-          value: false,
-          name: 'Enrollment 3',
-          study: 'DAM',
-          course: '2016/2017',
-          classroom: '23.1'
-        }
-      ]
+      items: []
     }
   },
   created () {
@@ -129,13 +107,14 @@ export default {
   },
   methods: {
     getEnrollments () {
-//      window.axios.get('http://localhost:8000/api/user')
-//        .then(function (data) {
-//          console.log(data)
-//        })
-//        .catch(function (err) {
-//          console.log(err)
-//        })
+      console.log(this.e3)
+      window.axios.get('/api/v1/enrollments')
+        .then((response) => {
+          console.log(response)
+          this.items = response.data.data
+        }, (err) => {
+          console.log(err)
+        })
     }
   },
   computed: {

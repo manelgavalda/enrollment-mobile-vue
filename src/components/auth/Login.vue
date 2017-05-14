@@ -56,17 +56,15 @@ export default {
       formData.append('password', this.password)
       formData.append('scope', '')
 
-      var out = this
-
       console.log('Login')
       axios.post('/oauth/token', formData)
-        .then(function (res) {
+        .then((res) => {
           axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.access_token
           localStorage.setItem('token', res.data.access_token)
-          out.getUser()
-          out.$router.push({path: 'home'})
-        })
-        .catch(function (error) {
+          console.log(res.data.access_token)
+          this.getUser()
+          this.$router.push({path: 'home'})
+        }, (error) => {
           console.log(error)
         })
     },

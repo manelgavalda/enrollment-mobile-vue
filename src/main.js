@@ -39,8 +39,11 @@ window.axios.defaults.headers.common = {
 }
 
 window.axios.defaults.baseURL = 'http://localhost:8000'
-window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token')
-window.axios.defaults.headers.common = { 'X-Requested-With': 'XMLHttpRequest' }
+window.axios.defaults.headers.common = {
+  'Authorization': 'Bearer ' + window.localStorage.getItem('token'),
+  'X-Requested-With': 'XMLHttpRequest',
+  'Accept': 'application/json'
+}
 
 Vue.material.setCurrentTheme('manel')
 
