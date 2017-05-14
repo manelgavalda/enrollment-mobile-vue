@@ -1,29 +1,34 @@
 // Afegides
 import Home from '../components/Home'
 import Profile from '../components/Profile'
-import PersonalStudentData from '../components/PersonalStudentData'
 import Login from '../components/auth/Login'
-import Full from '../components/containers/Full'
+import Enrollments from '../components/Enrollments'
+// import App from '../App.vue'
+import Full from '../components/containers/Full.vue'
 const routes = [
   {
     path: '/',
     redirect: '/home',
+    meta: { auth: true },
     component: Full,
     children: [
       {
         path: 'home',
         name: 'Home',
-        component: Home
+        component: Home,
+        meta: { auth: true }
       },
       {
         path: 'profile',
         name: 'Profile',
-        component: Profile
+        component: Profile,
+        meta: { auth: true }
       },
       {
-        path: 'personalStudentData',
-        name: 'PersonalStudentData',
-        component: PersonalStudentData
+        path: 'enrollments',
+        name: 'Enrollments',
+        component: Enrollments,
+        meta: { auth: true }
       }
     ]
   },
@@ -34,11 +39,13 @@ const routes = [
   {
     path: '/login',
     component: Login,
+    meta: { auth: false },
     children: [
       {
         path: 'login',
         name: 'Login',
-        component: Login
+        component: Login,
+        meta: { auth: false }
       }
     ]
   }

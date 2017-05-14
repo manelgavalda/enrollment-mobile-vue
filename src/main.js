@@ -7,6 +7,7 @@ import App from './App'
 import VueRouter from 'vue-router'
 import VueMaterial from 'vue-material'
 import Vuetify from 'vuetify'
+import Axios from 'axios'
 import 'vue-material/dist/vue-material.css'
 
 Vue.config.productionTip = true
@@ -17,6 +18,7 @@ Vue.use(Vuetify)
 
 import router from './services/router'
 
+window.axios = Axios
 // Theme
 
 Vue.material.registerTheme('manel', {
@@ -31,6 +33,12 @@ Vue.material.registerTheme('manel', {
     hue: 300
   }
 })
+
+window.axios.defaults.headers.common = {
+  'X-Requested-With': 'XMLHttpRequest'
+}
+
+window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + window.localStorage.getItem('token')
 
 Vue.material.setCurrentTheme('manel')
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="app">
+  <v-app class="app">
     <v-stepper v-model="e6" vertical>
 
       <v-stepper-step step="1" v-bind:complete="e6 > 1"> Select User <small></small> </v-stepper-step>
@@ -184,7 +184,7 @@
       </v-stepper-content>
     </v-stepper>
 
-  </div>
+  </v-app>
 </template>
 
 <script>

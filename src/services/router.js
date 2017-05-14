@@ -11,12 +11,12 @@ const router = new VueRouter({
   // scrollBehavior: () => ({ y: 0 })
 })
 
-// router.beforeEach((to, from, next) => {
-//   console.log(window.localStorage.getItem('system_id'))
-//   if (!auth.loggedIn()) {
-//     return next('/Login')
-//   }
-//   next()
-// })
+router.beforeEach((to, from, next) => {
+  console.log(window.localStorage.getItem('system_id'))
+  if (to.meta.auth && !window.localStorage.getItem('token')) {
+    return next('/Login')
+  }
+  next()
+})
 
 export default router

@@ -1,0 +1,7 @@
+const constants = {
+    OAUTH_GRANT_TYPE: 'TYPE',
+    OAUTH_CLIENT_ID: 0,
+    OAUTH_CLIENT_SECRET: 'SECRET',
+    ANDROID_SENDER_ID: 'TODO',
+}
+export default constants

@@ -27,8 +27,8 @@
         </md-list-item>
 
         <md-list-item>
-          <router-link @click.native="toggleLeftSidenav" exact  to="/personalStudentData">
-            <md-icon>face</md-icon> Personal Student Data </router-link>
+          <router-link @click.native="toggleLeftSidenav" exact  to="/enrollments">
+            <md-icon>school</md-icon> Enrollments </router-link>
         </md-list-item>
 
         <md-list-item>
