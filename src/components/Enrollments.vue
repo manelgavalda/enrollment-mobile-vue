@@ -46,6 +46,8 @@
           <td class="text-xs-right">{{ props.item.study_id }}</td>
           <td class="text-xs-right">{{ props.item.course_id }}</td>
           <td class="text-xs-right">{{ props.item.classroom_id }}</td>
+          <td class="text-xs-right">{{ props.item.created_at }}</td>
+          <td class="text-xs-right">{{ props.item.updated_at }}</td>
         </template>
       </v-data-table>
     </v-card>
@@ -76,6 +78,14 @@ export default {
         {
           text: 'Classroom',
           value: 'classroom'
+        },
+        {
+          text: 'Created at',
+          value: 'created_at'
+        },
+        {
+          text: 'Updated at',
+          value: 'updated_at'
         }
 
       ],
