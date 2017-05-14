@@ -119,23 +119,11 @@
                   ></v-text-field>
                 </v-col>
 
-              </v-row>
-
-              <v-row row>
-
-                <v-col xs2>
-                  <v-subheader>Postal Code:</v-subheader>
-                </v-col>
-
                 <v-col xs4>
                   <v-text-field
                     name="input-1"
                     label="Postal Code"
                   ></v-text-field>
-                </v-col>
-
-                <v-col xs2>
-                  <v-subheader>Location:</v-subheader>
                 </v-col>
 
                 <v-col xs4>

@@ -48,6 +48,11 @@ const routes = [
         meta: { auth: false }
       }
     ]
+  },
+  {
+    path: '*',
+    redirect: '/login',
+    meta: { auth: false }
   }
 ]
 

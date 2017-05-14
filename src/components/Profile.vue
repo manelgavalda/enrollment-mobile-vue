@@ -3,7 +3,7 @@
     <v-card>
       <v-card-text>
         <v-card-row height="75px">
-          <img src="https://s.gravatar.com/avatar/7d23ac5a56b02117f12c54f0d98bf6de?s=30" style="margin-right:42px; border-radius:100px" alt="">
+          <img :src="avatar" style="margin-right:42px; border-radius:100px" alt="">
           <div>
             <div>Name</div><strong>{{user_name}}</strong>
           </div>
@@ -23,6 +23,8 @@
 </template>
 
 <script>
+
+import gravatar from 'gravatar'
 export default {
   name: 'profile',
   data () {
@@ -33,10 +35,14 @@ export default {
   },
   created () {
     console.log('profile')
-    this.user_name = localStorage.getItem('user-name')
-    this.user_email = localStorage.getItem('user-email')
+    this.getUserData()
   },
   methods: {
+    getUserData () {
+      this.user_name = localStorage.getItem('user-name')
+      this.user_email = localStorage.getItem('user-email')
+      this.avatar = 'http:' + gravatar.url(this.user_email)
+    }
   }
 }
 </script>

@@ -31,7 +31,9 @@
               @open="props.item._name = props.item.name"
               @cancel="props.item.name = props.item._name || props.item.name"
               lazy
-            > {{ props.item.name }}
+            >
+              {{ props.item.name }}
+              <div slot="input" class="mt-3 title">Update Name</div>
               <v-text-field
                 slot="input"
                 label="Edit"
@@ -44,27 +46,6 @@
           <td class="text-xs-right">{{ props.item.study_id }}</td>
           <td class="text-xs-right">{{ props.item.course_id }}</td>
           <td class="text-xs-right">{{ props.item.classroom_id }}</td>
-          <td>
-            <v-edit-dialog
-              class="text-xs-right"
-              @open="props.item._iron = props.item.iron"
-              @cancel="props.item.iron = props.item._iron || props.item.iron"
-              large
-              lazy
-            >
-              <div class="text-xs-right">{{ props.item.iron }}</div>
-              <div slot="input" class="mt-3 title">Update Iron</div>
-              <v-text-field
-                slot="input"
-                label="Edit"
-                v-bind:value="props.item.iron"
-                v-on:blur="val => props.item.iron = val"
-                single-line
-                counter
-                autofocus
-              ></v-text-field>
-            </v-edit-dialog>
-          </td>
         </template>
       </v-data-table>
     </v-card>

@@ -32,7 +32,7 @@
         </md-list-item>
 
         <md-list-item>
-          <router-link exact  to="/login">
+          <router-link @click.native="logout" exact  to="/login">
             <md-icon>exit_to_app</md-icon> Logout </router-link>
         </md-list-item>
 
@@ -93,6 +93,11 @@
         // This setter gets called twice
         console.log('set!')
         this.showModal = value
+      },
+      logout () {
+        localStorage.removeItem('token')
+        localStorage.removeItem('user-email')
+        localStorage.removeItem('user-name')
       }
     }
   }
