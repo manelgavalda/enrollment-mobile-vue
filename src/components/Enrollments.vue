@@ -129,13 +129,13 @@ export default {
   },
   methods: {
     getEnrollments () {
-      window.axios.get('http://localhost:8000/api/user')
-        .then(function (data) {
-          console.log(data)
-        })
-        .catch(function (err) {
-          console.log(err)
-        })
+//      window.axios.get('http://localhost:8000/api/user')
+//        .then(function (data) {
+//          console.log(data)
+//        })
+//        .catch(function (err) {
+//          console.log(err)
+//        })
     }
   },
   computed: {

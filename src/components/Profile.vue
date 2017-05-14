@@ -5,13 +5,13 @@
         <v-card-row height="75px">
           <img src="https://s.gravatar.com/avatar/7d23ac5a56b02117f12c54f0d98bf6de?s=30" style="margin-right:42px; border-radius:100px" alt="">
           <div>
-            <div>Name</div><strong>Manel Gavaldà Andreu</strong>
+            <div>Name</div><strong>{{user_name}}</strong>
           </div>
         </v-card-row>
         <v-card-row height="75px">
           <v-icon class="mr-5">email</v-icon>
           <div>
-            <div>Email</div><strong>manelgavalda@iesebre.com</strong>
+            <div>Email</div><strong>{{user_email}}</strong>
           </div>
         </v-card-row>
       </v-card-text>
@@ -27,17 +27,16 @@ export default {
   name: 'profile',
   data () {
     return {
-      msg: 'Welcome to Enrollment Mobile'
+      user_name: '-',
+      user_email: '-'
     }
   },
   created () {
     console.log('profile')
-    this.prova()
+    this.user_name = localStorage.getItem('user-name')
+    this.user_email = localStorage.getItem('user-email')
   },
   methods: {
-    prova () {
-      console.log('profile')
-    }
   }
 }
 </script>

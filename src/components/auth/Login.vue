@@ -39,7 +39,8 @@ export default {
     return {
       authorized: false,
       email: '',
-      password: ''
+      password: '',
+      user: {}
     }
   },
   created () {
@@ -47,9 +48,6 @@ export default {
   },
   methods: {
     login: function () {
-      axios.defaults.headers.common = {
-        'X-Requested-With': 'XMLHttpRequest'
-      }
       var formData = new FormData()
       formData.append('grant_type', constants.OAUTH_GRANT_TYPE)
       formData.append('client_id', constants.OAUTH_CLIENT_ID)
@@ -61,17 +59,31 @@ export default {
       var out = this
 
       console.log('Login')
-      axios.post('http://localhost:8000/oauth/token', formData)
+      axios.post('/oauth/token', formData)
         .then(function (res) {
-          var token = res.data.access_token
-          axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
-          console.log(token)
-          window.localStorage.setItem('token', token)
+          axios.defaults.headers.common['Authorization'] = 'Bearer ' + res.data.access_token
+          localStorage.setItem('token', res.data.access_token)
+          out.getUser()
           out.$router.push({path: 'home'})
         })
-        .catch(function (err) {
-          console.log(err)
+        .catch(function (error) {
+          console.log(error)
         })
+    },
+    getUser () {
+      console.log('entra')
+      axios.get('/api/v1/user', {
+      }).then((response) => {
+        console.log(response.data)
+        this.user = response.data
+        this.saveUserInfo()
+      }, (error) => {
+        console.log(error)
+      })
+    },
+    saveUserInfo () {
+      localStorage.setItem('user-name', this.user.name)
+      localStorage.setItem('user-email', this.user.email)
     }
   }
 }
