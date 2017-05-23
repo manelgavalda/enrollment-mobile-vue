@@ -13,6 +13,7 @@
         ></v-text-field>
       </v-card-title>
       <v-data-table
+        :items="items"
         v-bind:headers="headers"
         v-model="items"
         v-bind:search="e3"
@@ -98,7 +99,6 @@ export default {
   },
   methods: {
     getEnrollments () {
-      console.log(this.e3)
       window.axios.get('/api/v1/enrollments')
         .then((response) => {
           console.log(response)
