@@ -69,7 +69,6 @@ export default {
         })
     },
     getUser () {
-      console.log('entra')
       axios.get('/api/v1/user', {
       }).then((response) => {
         console.log(response.data)

@@ -32,6 +32,7 @@
                   <v-text-field
                     name="input-1"
                     label="TSI"
+                    :value="person.tsi"
                   ></v-text-field>
                 </v-flex>
 
@@ -39,6 +40,7 @@
                   <v-text-field
                     name="input-1"
                     label="Birth Date"
+                    :value="person.birth_date"
                   ></v-text-field>
                 </v-flex>
 
@@ -50,6 +52,7 @@
                   <v-text-field
                     name="input-1"
                     label="Name"
+                    :value="person.name"
                   ></v-text-field>
                 </v-flex>
 
@@ -57,6 +60,7 @@
                   <v-text-field
                     name="input-1"
                     label="DNI"
+                    :value="person.dni"
                   ></v-text-field>
                 </v-flex>
               </v-layout>
@@ -67,6 +71,7 @@
                   <v-text-field
                     name="input-1"
                     label="Location"
+                    :value="person.location"
                   ></v-text-field>
                 </v-flex>
 
@@ -74,6 +79,7 @@
                   <v-text-field
                     name="input-1"
                     label="Sex"
+                    :value="person.sex"
                   ></v-text-field>
                 </v-flex>
 
@@ -85,6 +91,7 @@
                   <v-text-field
                     name="input-1"
                     label="Telephone"
+                    :value="person.telephone"
                   ></v-text-field>
                 </v-flex>
 
@@ -92,6 +99,7 @@
                   <v-text-field
                     name="input-1"
                     label="Mobile Phone"
+                    :value="person.mobile_phone"
                   ></v-text-field>
                 </v-flex>
               </v-layout>
@@ -101,6 +109,7 @@
                   <v-text-field
                     name="input-1"
                     label="First Surname"
+                    :value="person.first_surname"
                   ></v-text-field>
                 </v-flex>
 
@@ -108,6 +117,7 @@
                   <v-text-field
                     name="input-1"
                     label="Second Surname"
+                    :value="person.second_surname"
                   ></v-text-field>
                 </v-flex>
               </v-layout>
@@ -118,6 +128,7 @@
                   <v-text-field
                     name="input-1"
                     label="Personal Email"
+                    :value="person.personal_email"
                   ></v-text-field>
                 </v-flex>
 
@@ -125,6 +136,7 @@
                   <v-text-field
                     name="input-1"
                     label="Postal Code"
+                    :value="person.postal_code"
                   ></v-text-field>
                 </v-flex>
 
@@ -207,7 +219,8 @@ export default {
       // Enrollment Information TODO
       professional_modules: [],
       formative_units: [],
-      enrollments: {}
+      enrollments: {},
+      person: {}
 
       //      var professional_modules = {
       //        id,
@@ -227,9 +240,8 @@ export default {
     }
   },
   created () {
-    this.username = localStorage.getItem('user-name')
-    this.email = localStorage.getItem('user-email')
     this.getEnrollments()
+    this.getPerson()
   },
   methods: {
     getEnrollments () {
@@ -237,6 +249,16 @@ export default {
         .then((response) => {
           console.log(response)
           this.enrollments = response.data
+        }, (err) => {
+          console.log(err)
+        })
+    },
+    getPerson () {
+      window.axios.get('/api/v1/person_from_user')
+        .then((response) => {
+          this.person = response.data
+          this.username = localStorage.getItem('user-name')
+          this.email = localStorage.getItem('user-email')
         }, (err) => {
           console.log(err)
         })
