@@ -46,7 +46,8 @@
           </td>
           <td class="text-xs-right">{{ props.item.study_id }}</td>
           <td class="text-xs-right">{{ props.item.course_id }}</td>
-          <td class="text-xs-right">{{ props.item.classroom.name }}</td>
+          <!--<td class="text-xs-right">{{ props.item.classroom.name }}</td>-->
+          <td class="text-xs-right">{{ props.item.classroom_id }}</td>
           <td class="text-xs-right">{{ props.item.created_at }}</td>
           <td class="text-xs-right">{{ props.item.updated_at }}</td>
         </template>

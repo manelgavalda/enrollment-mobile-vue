@@ -160,24 +160,67 @@
         <v-btn flat>Back</v-btn>
       </v-stepper-content>
 
-      <v-stepper-step step="3">Enrollment information 2016-17 period</v-stepper-step>
+      <v-stepper-step step="3" v-bind:complete="e6 > 3">Enrollment information 2016-17 period</v-stepper-step>
       <v-stepper-content step="3">
-        <v-card class="grey lighten-1 z-depth-1 mb-5" height="200px" />
-        <v-btn primary @click.native="e6 = 4">Continue</v-btn>
-        <v-btn flat>Back</v-btn>
+      <v-card class="grey lighten-4 elevation-0">
+        <v-flex xs3>
+          <v-list>
+            <v-list-item v-for="course in courses" :key="course">
+              <v-list-tile>
+                <v-list-tile-title>{{ course.name }}</v-list-tile-title>
+              </v-list-tile>
+            </v-list-item>
+          </v-list>
+
+        </v-flex>
+      </v-card>
+      <v-btn primary @click.native="e6 = 4">Continue</v-btn>
+      <v-btn flat>Back</v-btn>
       </v-stepper-content>
 
-      <v-stepper-step step="4">Professional Modules</v-stepper-step>
+      <v-stepper-step step="4" v-bind:complete="e6 > 4">Professional Modules</v-stepper-step>
       <v-stepper-content step="4">
-        <v-card class="grey lighten-1 z-depth-1 mb-5" height="200px" />
+        <v-card class="grey lighten-4 elevation-0">
+          <v-flex xs3>
+            <v-list>
+              <v-list-item v-for="module in modules" :key="module">
+              <v-list-tile avatar>
+                <v-list-tile-action>
+                  <v-checkbox v-model="selected_modules.select"></v-checkbox>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                  <v-list-tile-title>{{ module.name }}</v-list-tile-title>
+                  <v-list-tile-sub-title>Module Description</v-list-tile-sub-title>
+                </v-list-tile-content>
+              </v-list-tile>
+              </v-list-item>
+            </v-list>
+          </v-flex>
+        </v-card>
         <v-btn primary @click.native="e6 = 5">Continue</v-btn>
         <v-btn flat>Back</v-btn>
       </v-stepper-content>
 
       <v-stepper-step step="5">Formative Units</v-stepper-step>
       <v-stepper-content step="5">
-        <v-card class="grey lighten-1 z-depth-1 mb-5" height="200px" />
-        <v-btn primary @click.native="e6 = 1">Continue</v-btn>
+        <v-card class="grey lighten-4 elevation-0">
+          <v-flex xs3>
+            <v-list>
+              <v-list-item v-for="submodule in submodules" :key="submodule">
+                <v-list-tile avatar>
+                  <v-list-tile-action>
+                    <v-checkbox v-model="selected_submodules.select"></v-checkbox>
+                  </v-list-tile-action>
+                  <v-list-tile-content>
+                    <v-list-tile-title>{{ submodule.name }}</v-list-tile-title>
+                    <v-list-tile-sub-title>{{ submodule.module_id}}</v-list-tile-sub-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+              </v-list-item>
+            </v-list>
+          </v-flex>
+        </v-card>
+        <v-btn primary @click.native="e6 = 5">Finish</v-btn>
         <v-btn flat>Back</v-btn>
       </v-stepper-content>
     </v-stepper>
@@ -220,7 +263,16 @@ export default {
       professional_modules: [],
       formative_units: [],
       enrollments: {},
-      person: {}
+      person: {},
+      courses: {},
+      modules: {},
+      selected_modules: {
+        select: false
+      },
+      submodules: {},
+      selected_submodules: {
+        select: false
+      }
 
       //      var professional_modules = {
       //        id,
@@ -242,13 +294,17 @@ export default {
   created () {
     this.getEnrollments()
     this.getPerson()
+    this.getCourses()
+    this.getModules()
+    this.getSubmodules()
   },
   methods: {
     getEnrollments () {
       window.axios.get('/api/v1/enrollments_from_user')
         .then((response) => {
-          console.log(response)
           this.enrollments = response.data
+          console.log('Enrollments')
+          console.log(response.data)
         }, (err) => {
           console.log(err)
         })
@@ -259,6 +315,38 @@ export default {
           this.person = response.data
           this.username = localStorage.getItem('user-name')
           this.email = localStorage.getItem('user-email')
+          console.log('Person')
+          console.log(response.data)
+        }, (err) => {
+          console.log(err)
+        })
+    },
+    getCourses () {
+      window.axios.get('/api/v1/courses')
+        .then((response) => {
+          this.courses = response.data.data
+          console.log('Courses')
+          console.log(response.data.data)
+        }, (err) => {
+          console.log(err)
+        })
+    },
+    getModules () {
+      window.axios.get('/api/v1/modules')
+        .then((response) => {
+          this.modules = response.data.data
+          console.log('Modules')
+          console.log(response.data.data)
+        }, (err) => {
+          console.log(err)
+        })
+    },
+    getSubmodules () {
+      window.axios.get('/api/v1/submodules')
+        .then((response) => {
+          this.submodules = response.data.data
+          console.log('Submodules')
+          console.log(response.data.data)
         }, (err) => {
           console.log(err)
         })
