@@ -2,7 +2,7 @@
   <v-app class="app">
     <v-stepper v-model="e6" vertical>
 
-      <v-stepper-step step="1" v-bind:complete="e6 > 1"> Select User <small></small> </v-stepper-step>
+      <v-stepper-step step="1" v-bind:complete="e6 > 1"> User Information </v-stepper-step>
       <v-stepper-content step="1">
 
         <v-card class="grey lighten-4 elevation-0">
@@ -157,25 +157,24 @@
           </v-flex>
         </v-card>
         <v-btn primary @click.native="e6 = 3">Continue</v-btn>
-        <v-btn flat>Back</v-btn>
+        <v-btn flat @click.native="e6 = 1">Back</v-btn>
       </v-stepper-content>
 
-      <v-stepper-step step="3" v-bind:complete="e6 > 3">Enrollment information 2016-17 period</v-stepper-step>
+      <v-stepper-step step="3" v-bind:complete="e6 > 3">Course</v-stepper-step>
       <v-stepper-content step="3">
       <v-card class="grey lighten-4 elevation-0">
         <v-flex xs3>
           <v-list>
             <v-list-item v-for="course in courses" :key="course">
-              <v-list-tile>
-                <v-list-tile-title>{{ course.name }}</v-list-tile-title>
+              <v-list-tile @click.native="selectCourse(course)">
+                <v-list-tile-title :id="course.name">{{ course.name }}</v-list-tile-title>
               </v-list-tile>
             </v-list-item>
           </v-list>
-
         </v-flex>
       </v-card>
       <v-btn primary @click.native="e6 = 4">Continue</v-btn>
-      <v-btn flat>Back</v-btn>
+        <v-btn flat @click.native="e6 = 2">Back</v-btn>
       </v-stepper-content>
 
       <v-stepper-step step="4" v-bind:complete="e6 > 4">Professional Modules</v-stepper-step>
@@ -184,13 +183,13 @@
           <v-flex xs3>
             <v-list>
               <v-list-item v-for="module in modules" :key="module">
-              <v-list-tile avatar>
+              <v-list-tile avatar @click.native="selectModule(module.name)">
                 <v-list-tile-action>
-                  <v-checkbox v-model="selected_modules.select"></v-checkbox>
+                  <v-checkbox v-model="module.selected"></v-checkbox>
                 </v-list-tile-action>
                 <v-list-tile-content>
                   <v-list-tile-title>{{ module.name }}</v-list-tile-title>
-                  <v-list-tile-sub-title>Module Description</v-list-tile-sub-title>
+                  <v-list-tile-sub-title>{{ module.study_id }}</v-list-tile-sub-title>
                 </v-list-tile-content>
               </v-list-tile>
               </v-list-item>
@@ -198,10 +197,10 @@
           </v-flex>
         </v-card>
         <v-btn primary @click.native="e6 = 5">Continue</v-btn>
-        <v-btn flat>Back</v-btn>
+        <v-btn flat @click.native="e6 = 3">Back</v-btn>
       </v-stepper-content>
 
-      <v-stepper-step step="5">Formative Units</v-stepper-step>
+      <v-stepper-step step="5" v-bind:complete="e6 > 5">Formative Units</v-stepper-step>
       <v-stepper-content step="5">
         <v-card class="grey lighten-4 elevation-0">
           <v-flex xs3>
@@ -209,19 +208,35 @@
               <v-list-item v-for="submodule in submodules" :key="submodule">
                 <v-list-tile avatar>
                   <v-list-tile-action>
-                    <v-checkbox v-model="selected_submodules.select"></v-checkbox>
+                    <v-checkbox v-model="submodule.selected"></v-checkbox>
                   </v-list-tile-action>
                   <v-list-tile-content>
                     <v-list-tile-title>{{ submodule.name }}</v-list-tile-title>
-                    <v-list-tile-sub-title>{{ submodule.module_id}}</v-list-tile-sub-title>
+                    <v-list-tile-sub-title>{{ submodule.module.name}}</v-list-tile-sub-title>
                   </v-list-tile-content>
                 </v-list-tile>
               </v-list-item>
             </v-list>
           </v-flex>
         </v-card>
-        <v-btn primary @click.native="e6 = 5">Finish</v-btn>
-        <v-btn flat>Back</v-btn>
+        <v-btn flat @click.native="e6 = 4">Back</v-btn>
+        <v-layout row justify-center>
+          <v-dialog v-model="dialog">
+            <v-btn primary light slot="activator">Finish</v-btn>
+            <v-card>
+              <v-card-row>
+                <v-card-title>Send enrollment?</v-card-title>
+              </v-card-row>
+              <v-card-row>
+                <v-card-text>You will get a notification when your enrollment is approved.</v-card-text>
+              </v-card-row>
+              <v-card-row actions>
+                <v-btn class="green--text darken-1" flat="flat" @click.native="dialog = false">Cancel</v-btn>
+                <v-btn class="green--text darken-1" flat="flat" @click.native="sendEnrollment()">Send</v-btn>
+              </v-card-row>
+            </v-card>
+          </v-dialog>
+        </v-layout>
       </v-stepper-content>
     </v-stepper>
 
@@ -236,6 +251,10 @@ export default {
       msg: 'Welcome to Enrollment Mobile',
 
       e6: 0,
+      toggle_none: null,
+      dialog: false,
+//      success: false,
+
       // Alumn personal data.
       dni: '',
       tsi: '',
@@ -272,7 +291,9 @@ export default {
       submodules: {},
       selected_submodules: {
         select: false
-      }
+      },
+      selectedCourse: false,
+      selectedModule: false
 
       //      var professional_modules = {
       //        id,
@@ -335,6 +356,9 @@ export default {
       window.axios.get('/api/v1/modules')
         .then((response) => {
           this.modules = response.data.data
+          this.modules.forEach(function (element) {
+            element['selected'] = ''
+          })
           console.log('Modules')
           console.log(response.data.data)
         }, (err) => {
@@ -350,6 +374,20 @@ export default {
         }, (err) => {
           console.log(err)
         })
+    },
+    selectCourse (selectedCourse) {
+      console.log(selectedCourse.name)
+      document.getElementById(selectedCourse.name).style.color = '#ffac31'
+    },
+    selectModule (selectedModule) {
+//      console.log(selectedModule.selected)
+//      this.selectedModule = selectedModule.selected
+//      document.getElementById(selectedModule).checked = true
+      selectedModule = false
+    },
+    sendEnrollment () {
+      this.dialog = false
+      this.$router.push({path: 'enrollments'})
     }
   }
 }

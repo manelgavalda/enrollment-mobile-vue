@@ -17,14 +17,11 @@
         v-bind:headers="headers"
         v-model="items"
         v-bind:search="e3"
-        select-all
       >
         <template slot="items" scope="props">
           <td>
             <v-checkbox
-              hide-details
-              primary
-              v-model="props.item.value"
+              v-model="props.item.validated"
             ></v-checkbox>
           </td>
           <td>
@@ -44,10 +41,10 @@
               ></v-text-field>
             </v-edit-dialog>
           </td>
-          <td class="text-xs-right">{{ props.item.study_id }}</td>
-          <td class="text-xs-right">{{ props.item.course_id }}</td>
+          <td class="text-xs-right">{{ props.item.study.name }}</td>
+          <td class="text-xs-right">{{ props.item.course.name }}</td>
           <!--<td class="text-xs-right">{{ props.item.classroom.name }}</td>-->
-          <td class="text-xs-right">{{ props.item.classroom_id }}</td>
+          <td class="text-xs-right">{{ props.item.classroom.name }}</td>
           <td class="text-xs-right">{{ props.item.created_at }}</td>
           <td class="text-xs-right">{{ props.item.updated_at }}</td>
         </template>
@@ -64,9 +61,13 @@ export default {
       e3: '',
       headers: [
         {
-          text: 'Nom',
+          text: 'Validated',
           left: true,
           sortable: false,
+          value: 'validated'
+        },
+        {
+          text: 'Name',
           value: 'name'
         },
         {
