@@ -47,7 +47,7 @@
             </v-card-row>
             <v-card-row actions>
               <v-btn class="green--text darken-1" flat="flat" @click.native="d1 = false">Disagree</v-btn>
-              <v-btn class="green--text darken-1" flat="flat" @click.native="d1 = false">Agree</v-btn>
+              <v-btn class="green--text darken-1" flat="flat" @click.native="closeApp">Agree</v-btn>
             </v-card-row>
           </v-card>
         </v-dialog>
@@ -75,6 +75,9 @@
         d1: false
       }
     },
+    created () {
+      document.addEventListener('deviceready', this.onDeviceReady, false)
+    },
     name: 'app',
     methods: {
       toggleLeftSidenav () {
@@ -98,6 +101,20 @@
         localStorage.removeItem('token')
         localStorage.removeItem('user-email')
         localStorage.removeItem('user-name')
+      },
+      closeApp () {
+        navigator.notification.confirm(
+          'Do you want to close the aplication?',
+          this.onConfirmQuit,
+          'QUIT',
+          'OK,Cancel'
+        )
+      },
+      onConfirmQuit (button) {
+        console.log(button)
+        if (button === 1) {
+          navigator.app.exitApp()
+        }
       }
     }
   }
