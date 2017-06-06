@@ -92,7 +92,8 @@ export default {
         }
 
       ],
-      items: []
+      items: [],
+      showModal: ''
     }
   },
   created () {
@@ -107,6 +108,7 @@ export default {
           this.items = response.data.data
         }, (err) => {
           console.log(err)
+          this.showModal = true
         })
     }
   },
