@@ -10,6 +10,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "acacha-forms": "^0.1.7",
     "axios": "^0.16.1",
     "gravatar": "^1.6.0",
     "vue": "^2.2.2",

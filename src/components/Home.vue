@@ -244,6 +244,7 @@
 </template>
 
 <script>
+import notifications from '../services/notifications'
 export default {
   name: 'home',
   data () {
@@ -318,8 +319,16 @@ export default {
     this.getCourses()
     this.getModules()
     this.getSubmodules()
+    document.addEventListener('deviceready', this.onDeviceReady, false)
+    if (window.cordova && window.device.platform !== 'browser') {
+      notifications.enable()
+    }
   },
   methods: {
+    onDeviceReady  () {
+      console.log('Working on platform' + window.device.platform)
+      console.log('Data')
+    },
     getEnrollments () {
       window.axios.get('/api/v1/enrollments_from_user')
         .then((response) => {
