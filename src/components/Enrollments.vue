@@ -20,7 +20,7 @@
       >
         <template slot="items" scope="props">
           <td>
-            <v-checkbox
+            <v-checkbox disabled
               v-model="props.item.validated"
             ></v-checkbox>
           </td>
