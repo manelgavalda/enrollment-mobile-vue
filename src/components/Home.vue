@@ -149,12 +149,15 @@
         <v-btn primary @click.native="e6 = 2">Continue</v-btn>
       </v-stepper-content>
 
-      <v-stepper-step step="2" v-bind:complete="e6 > 2"> Enrollments </v-stepper-step>
+      <v-stepper-step step="2" v-bind:complete="e6 > 2"> Enrollment Name </v-stepper-step>
       <v-stepper-content step="2">
         <v-card class="grey lighten-4 elevation-0">
-          <v-flex xs3>
-            <v-btn-dropdown v-bind:options="[{ text: enrollments.name }]" label="Enrollment"></v-btn-dropdown>
-          </v-flex>
+          <!--<v-flex xs3>-->
+            <!--<v-btn-dropdown v-bind:options="[{ text: enrollments.name }]" label="Enrollment"></v-btn-dropdown>-->
+          <!--</v-flex>-->
+          <md-input-container>
+            <md-input type="text" v-model="enrollmentName"></md-input>
+          </md-input-container>
         </v-card>
         <v-btn primary @click.native="e6 = 3">Continue</v-btn>
         <v-btn flat @click.native="e6 = 1">Back</v-btn>
@@ -271,6 +274,7 @@ export default {
       personal_email: '',
       postal_code: '',
       location: '',
+      enrollmentName: '',
 
       // Enrollments
       academic_year: '',
@@ -384,6 +388,21 @@ export default {
           console.log(err)
         })
     },
+    postEnrollments () {
+      window.axios.post('/api/v1/enrollments', {
+        name: this.enrollmentName,
+        validated: 0,
+        finished: 1,
+        study_id: 1,
+        course_id: 1,
+        classroom_id: 1
+      })
+        .then((res) => {
+          console.log(res)
+        }, (error) => {
+          console.log(error)
+        })
+    },
     selectCourse (selectedCourse) {
       console.log(selectedCourse.name)
       document.getElementById(selectedCourse.name).style.color = '#ffac31'
@@ -395,6 +414,7 @@ export default {
       selectedModule = false
     },
     sendEnrollment () {
+      this.postEnrollments()
       this.dialog = false
       this.$router.push({path: 'enrollments'})
     }

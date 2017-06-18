@@ -4,7 +4,7 @@ import constants from '../constants'
 
 import app from '../App.vue'
 
-// import Form from 'acacha-forms'
+import Form from 'acacha-forms'
 //
 // import router from './router'
 
