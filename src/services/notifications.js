@@ -23,11 +23,12 @@ export default {
   },
   enable () {
     this.init()
-    // this.register()
+    this.register()
     // this.subscribe('all')
     this.process()
   },
   init () {
+    console.log('Init notifications')
     app.push = window.PushNotification.init({
       'android': {
         'senderID': constants.ANDROID_SENDER_ID
@@ -43,28 +44,28 @@ export default {
       'windows': {}
     })
   },
-  // register () {
-  //   app.push.on('registration', function (data) {
-  //     console.log('registration event: ' + data.registrationId)
-  //     // let oldRegId = localStorage.getItem('registrationId')
-  //     // if (oldRegId !== data.registrationId) {
-  //     // Save new registration ID
-  //     // localStorage.setItem('registrationId', data.registrationId)
-  //     // Post registrationId to your app server as the value has changed
-  //     let form = new Form({'registration_id': data.registrationId})
-  //
-  //     form.post(constants.REGISTER_GCM_TOKEN_URL)
-  //       .then(response => {
-  //         localStorage.setItem('registrationId', data.registrationId)
-  //         console.log('GCM token registered OK!')
-  //       })
-  //       .catch(error => {
-  //         console.log('And error ocurred adding GCM token to backend!')
-  //         console.log(error)
-  //       })
-  //     // }
-  //   })
-  // },
+  register () {
+    app.push.on('registration', function (data) {
+      console.log('registration event: ' + data.registrationId)
+      // let oldRegId = localStorage.getItem('registrationId')
+      // if (oldRegId !== data.registrationId) {
+      // Save new registration ID
+      // localStorage.setItem('registrationId', data.registrationId)
+      // Post registrationId to your app server as the value has changed
+      let form = new Form({'registration_id': data.registrationId})
+
+      form.post(constants.REGISTER_GCM_TOKEN_URL)
+        .then(response => {
+          localStorage.setItem('registrationId', data.registrationId)
+          console.log('GCM token registered OK!')
+        })
+        .catch(error => {
+          console.log('And error ocurred adding GCM token to backend!')
+          console.log(error)
+        })
+      // }
+    })
+  },
   subscribe (topic) {
     app.push.subscribe('/topics/' + topic, function () {
       console.log('Success registration to all topic')
