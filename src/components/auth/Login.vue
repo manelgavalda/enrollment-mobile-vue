@@ -35,6 +35,9 @@
         <md-button @click.native="login" class="md-raised md-primary">Login</md-button>
         <!--<md-button class="md-raised md-accent">Register</md-button>-->
       </md-card-actions>
+      <md-snackbar md-position="bottom center" ref="connectionError" md-duration="4000">
+        <span>Login error.</span>
+      </md-snackbar>
     </md-card>
   </v-app>
 </template>
@@ -55,6 +58,11 @@ export default {
     console.log('Login')
   },
   methods: {
+
+    showConnectionError () {
+      this.$refs.connectionError.open()
+    },
+
     login: function () {
       var formData = new FormData()
       formData.append('grant_type', constants.OAUTH_GRANT_TYPE)
@@ -74,6 +82,7 @@ export default {
           this.$router.push({path: 'home'})
         }, (error) => {
           console.log(error)
+          this.showConnectionError()
         })
     },
     getUser () {

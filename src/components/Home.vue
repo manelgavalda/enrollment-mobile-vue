@@ -149,7 +149,7 @@
         <v-btn primary @click.native="e6 = 2">Continue</v-btn>
       </v-stepper-content>
 
-      <v-stepper-step step="2" v-bind:complete="e6 > 2"> Enrollment Name </v-stepper-step>
+      <v-stepper-step step="2" v-bind:complete="e6 > 2"> Enrollment Name (5 characters min) </v-stepper-step>
       <v-stepper-content step="2">
         <v-card class="grey lighten-4 elevation-0">
           <!--<v-flex xs3>-->
@@ -242,6 +242,9 @@
         </v-layout>
       </v-stepper-content>
     </v-stepper>
+    <md-snackbar md-position="bottom center" ref="connectionError" md-duration="4000">
+      <span>Name validation error. Must be 5 characters!.</span>
+    </md-snackbar>
 
   </v-app>
 </template>
@@ -329,6 +332,9 @@ export default {
     }
   },
   methods: {
+    showConnectionError () {
+      this.$refs.connectionError.open()
+    },
     onDeviceReady  () {
       console.log('Working on platform' + window.device.platform)
       console.log('Data')
@@ -401,6 +407,7 @@ export default {
           console.log(res)
         }, (error) => {
           console.log(error)
+          this.showConnectionError()
         })
     },
     selectCourse (selectedCourse) {
