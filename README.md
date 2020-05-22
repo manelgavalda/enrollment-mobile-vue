@@ -1,6 +1,8 @@
+<p align="center"><img src="https://raw.githubusercontent.com/manelgavalda/enrollment-mobile-vue/master/src/assets/enrollmentmobile_logo.png" width="500"></p>
+
 # enrollment-mobile-vue
 
-> A Vue.js project
+> A Vue.js project to enroll users in a school.
 
 ## Build Setup
 

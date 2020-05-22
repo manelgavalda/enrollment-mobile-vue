@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <md-card>
+    <md-card style="background-color: white">
       <!--<md-card-media>-->
         <!--<img src="/../images/enrollmentmobile_logo.png" alt="Logo">-->
       <!--</md-card-media>-->
@@ -8,14 +8,6 @@
       <md-card-header>
         <div class="md-title">Enrollment Mobile Login</div>
         <div class="md-subhead">Login for Enrollment Mobile Application</div>
-        <p>Normal User:</p>
-        <ul>
-          <li>normaluser@iesebre.com | 123456</li>
-        </ul>
-        <p>Admin User</p>
-        <ul>
-          <li>admin@iesebre.com | 123456</li>
-        </ul>
       </md-card-header>
       <md-card-content>
         <form novalidate @submit.stop.prevent="submit">
